@@ -1,0 +1,29 @@
+<ActionBar title="Details" class="action-bar"></ActionBar>
+<FlexboxLayout flexDirection="column" class="page">
+    <FlexboxLayout class="m-15">
+        <Label class="h2" [text]="item.title"></Label>
+    </FlexboxLayout>
+    <Label class="h3 m-15" [text]="item.description"></Label>
+
+    <StackLayout orientation="horizontal" class="m-15">
+        <Label class="fa smallerIcon" [ngClass]="{'red': item.avg_rating > 0}" [text]="'fa-star' | fonticon"></Label>
+        <Label class="fa smallerIcon" [ngClass]="{'red': item.avg_rating > 1}" [text]="'fa-star' | fonticon"></Label>
+        <Label class="fa smallerIcon" [ngClass]="{'red': item.avg_rating > 2}" [text]="'fa-star' | fonticon"></Label>
+        <Label class="fa smallerIcon" [ngClass]="{'red': item.avg_rating > 3}" [text]="'fa-star' | fonticon"></Label>
+        <Label class="fa smallerIcon" [ngClass]="{'red': item.avg_rating > 4}" [text]="'fa-star' | fonticon"></Label>
+        <Label class="h2 m-5" text="( {{item.no_of_ratings}} )"></Label>
+    </StackLayout>
+
+    <Label class="h1" text="Rate it !"></Label>
+    <StackLayout orientation="horizontal" class="m-15">
+        <Label class="fa" [ngClass]="{'yellow': yourRate > 0}" [text]="'fa-star' | fonticon" (tap)="rateClicked(1)"></Label>
+        <Label class="fa" [ngClass]="{'yellow': yourRate > 1}" [text]="'fa-star' | fonticon" (tap)="rateClicked(2)"></Label>
+        <Label class="fa" [ngClass]="{'yellow': yourRate > 2}" [text]="'fa-star' | fonticon" (tap)="rateClicked(3)"></Label>
+        <Label class="fa" [ngClass]="{'yellow': yourRate > 3}" [text]="'fa-star' | fonticon" (tap)="rateClicked(4)"></Label>
+        <Label class="fa" [ngClass]="{'yellow': yourRate > 4}" [text]="'fa-star' | fonticon" (tap)="rateClicked(5)"></Label>
+    </StackLayout>
+    
+
+    <Button class="btn btn-primary w-full" text="Edit" (tap)="editClicked()"></Button>
+    <Button class="btn btn-accent w-full" text="Delete" (tap)="deleteClicked()"></Button>
+</FlexboxLayout>

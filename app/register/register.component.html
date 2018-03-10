@@ -1,0 +1,34 @@
+
+<ActionBar title="Register" class="action-bar">
+</ActionBar>
+<StackLayout class="page">
+    <StackLayout margin="10" verticalAlignment="center">
+        <StackLayout class="form" padding="50" *ngIf="loading">
+            <ActivityIndicator id="myIndicator" busy="true"></ActivityIndicator>
+        </StackLayout>
+        <StackLayout class="form" padding="15" *ngIf="!loading">
+          <RadDataForm #myRegisterDataForm tkExampleTitle tkToggleNavButton [source]="input">
+            <TKEntityProperty class="myTextField" tkDataFormProperty name="username"
+             displayName="Username" index="0" required="true">
+                <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Username can't be empty.">
+                </TKNonEmptyValidator>
+            </TKEntityProperty>
+            <TKEntityProperty tkDataFormProperty name="password" displayName="Password"
+             index="1" required="true">
+                <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
+                <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Password can't be empty.">
+                </TKNonEmptyValidator>
+            </TKEntityProperty>
+            <TKEntityProperty tkDataFormProperty name="email" displayName="Email"
+             index="2" required="true">
+                <TKPropertyEditor tkEntityPropertyEditor type="Email"></TKPropertyEditor>
+                <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Email can't be empty.">
+                </TKNonEmptyValidator>
+                <TKEmailValidator tkEntityPropertyValidators></TKEmailValidator>
+            </TKEntityProperty>
+          </RadDataForm>
+            <Button class="btn btn-primary w-full" [isEnabled]="!loading" text="Register" (tap)="onRegister()"></Button>
+            <Label [nsRouterLink]="['/login']" text="Have an account? Go back to login" class="text-center m-10"></Label>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

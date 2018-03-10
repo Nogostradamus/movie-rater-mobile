@@ -1,0 +1,27 @@
+
+<ActionBar title="Login" class="action-bar">
+</ActionBar>
+<StackLayout class="page">
+    <StackLayout margin="10" verticalAlignment="center">
+        <StackLayout class="form" padding="50" *ngIf="loading">
+            <ActivityIndicator id="myIndicator" busy="true"></ActivityIndicator>
+        </StackLayout>
+        <StackLayout class="form" padding="15" *ngIf="!loading">
+            <RadDataForm #myLoginDataForm tkExampleTitle tkToggleNavButton [source]="input">
+            <TKEntityProperty class="myTextField" tkDataFormProperty name="username"
+             displayName="Username" index="0" required="true">
+                <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Username can't be empty.">
+                </TKNonEmptyValidator>
+            </TKEntityProperty>
+            <TKEntityProperty tkDataFormProperty name="password" displayName="Password"
+             index="1" required="true">
+                <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
+                <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Password can't be empty.">
+                </TKNonEmptyValidator>
+            </TKEntityProperty>
+        </RadDataForm>
+            <Button class="btn btn-primary w-full" [isEnabled]="!loading" text="Login" (tap)="onLogin()"></Button>
+            <Label [nsRouterLink]="['/register']" text="Don't have an account? Register here" class="text-center m-10"></Label>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>

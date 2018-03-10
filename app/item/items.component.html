@@ -1,0 +1,12 @@
+<ActionBar title="Movie Rater" class="action-bar">
+</ActionBar>
+<StackLayout class="page">
+    <Button class="btn btn-primary w-full" text="Logout" (tap)="logoutClicked()"></Button>
+    <ListView [items]="items" class="list-group">
+        <ng-template let-item="item">
+            <Label [nsRouterLink]="['/item', item.id]" [text]="item.title"
+                class="list-group-item"></Label>
+        </ng-template>
+    </ListView>
+    <Button class="btn btn-primary w-full" text="Add" (tap)="addClicked()"></Button>
+</StackLayout>

@@ -1,0 +1,27 @@
+<ActionBar *ngIf="is_edit" title="Edit Movie" class="action-bar">
+  </ActionBar>
+  <ActionBar *ngIf="!is_edit" title="Add Movie" class="action-bar">
+    </ActionBar>
+<StackLayout class="page">
+    <StackLayout margin="10" verticalAlignment="center">
+        <StackLayout class="form" padding="50" *ngIf="loading">
+            <ActivityIndicator id="myIndicator" busy="true"></ActivityIndicator>
+        </StackLayout>
+        <StackLayout class="form" padding="15" *ngIf="!loading">
+            <RadDataForm #myMovieForm tkExampleTitle tkToggleNavButton [source]="input">
+            <TKEntityProperty class="myTextField" tkDataFormProperty name="title"
+             displayName="Title" index="0" required="true">
+                <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Title can't be empty.">
+                </TKNonEmptyValidator>
+            </TKEntityProperty>
+            <TKEntityProperty tkDataFormProperty name="description" displayName="Description"
+             index="1" required="true">
+              <TKPropertyEditor tkEntityPropertyEditor type="MultilineText"></TKPropertyEditor>
+                <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Description can't be empty.">
+                </TKNonEmptyValidator>
+            </TKEntityProperty>
+        </RadDataForm>
+            <Button class="btn btn-primary w-full" [isEnabled]="!loading" text="Save" (tap)="saveMovie()"></Button>
+           </StackLayout>
+    </StackLayout>
+</StackLayout>
